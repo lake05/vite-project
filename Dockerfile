@@ -1,4 +1,4 @@
-FROM node:14-alpine as builder 
+FROM node:alpine as builder 
 
 WORKDIR /app 
 
@@ -15,4 +15,4 @@ RUN npm run build
 # 选择更小体积的基础镜像
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder app/dist /usr/share/nginx/html
+COPY --from=builder ./dist /usr/share/nginx/html
